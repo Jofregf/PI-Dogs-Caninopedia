@@ -1,0 +1,8 @@
+.select-container {
+    border-radius: 5px;
+    width: 120%;
+    height: 30px;
+    background-color:#3a4d1c7a;
+    border: 0.1px solid #fbef00;
+    color: #f4e4c8
+}

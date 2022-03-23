@@ -1,0 +1,82 @@
+.upperContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: baseline;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+.btn-homes{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-indiv {
+    min-width: 130px;
+    height: 40px;
+    color: #f4e4c8;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #3a4d1c;
+    box-shadow: 0 5px #212b10;
+}
+
+.btn-indiv:hover {
+    box-shadow: 0 3px #212b10;
+    top: 1px;
+}
+
+.btn-indiv:active {
+    box-shadow: 0 0 #212b10;
+    top: 5px;
+}
+
+.home-search{
+    display: flex;
+    justify-content: center;
+}
+
+.HomeCreateDiv {
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FiltersHome {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.home-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 1px;
+}
+
+.nodatos {
+    font-size: 15px;
+      margin: 5px;
+      display:flex;
+      justify-content: center;
+      color: #f4e4c8;
+}
+
+.mensaje {
+    color: #f0082f; 
+    font-size: 50px;
+    font-weight: bold;
+}

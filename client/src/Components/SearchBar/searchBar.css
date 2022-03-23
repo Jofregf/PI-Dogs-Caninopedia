@@ -1,0 +1,42 @@
+.inputSearchBar {
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: #3a4d1c7a;
+    color: #f4e4c8;
+    border: 0.1px solid #fbef00;
+}
+
+
+.btn-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-barr {
+    min-width: 130px;
+    height: 40px;
+    color: #f4e4c8;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #3a4d1c;
+    box-shadow: 0 5px #212b10;
+  }
+  .btn-barr:hover {
+    box-shadow: 0 3px #212b10;
+    top: 1px;
+  }
+  .btn-barr:active {
+    box-shadow: 0 0 #212b10;
+    top: 5px;
+  }
