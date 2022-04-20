@@ -41,7 +41,7 @@ export function getBreedsDetails (id) {
 export function getBreedByName (name) {
     //console.log(name, 'action')
     return function (dispatch) {
-        fetch (`http://localhost:3001/dogs?name=${name}`)
+        fetch (`/dogs?name=${name}`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_BREED_BY_NAME, payload: data})})
         .catch(function (err) {
@@ -66,7 +66,7 @@ export function searchbarName (payload) {
 export function getTemperaments () {
     return async function (dispatch) {
         
-        fetch (`http://localhost:3001/temperament/`)
+        fetch (`/temperament/`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_TEMPERAMENTS, payload: data})})
         .catch(function (error) {
@@ -102,7 +102,7 @@ export function postBreed (breed){
     console.log(breed, 'action')
     return async function (dispatch) {
         try {
-            const newBreed = await axios.post(`http://localhost:3001/dog`, breed);
+            const newBreed = await axios.post(`/dog`, breed);
             dispatch({
                 type: POST_BREED,
                 payload: newBreed.data
@@ -116,7 +116,7 @@ export function postBreed (breed){
 export function getBreedbyTemperament (payload) {
     return async function (dispatch) {
         try {
-            const search = await axios.get(`http://localhost:3001/temperament/dogs?temperament=${payload}`);
+            const search = await axios.get(`/temperament/dogs?temperament=${payload}`);
             dispatch({
                 type: FILTER_BY_TEMPERAMENT,
                 payload: search.data
@@ -130,7 +130,7 @@ export function getBreedbyTemperament (payload) {
 export function filterAlphabetic (payload) {
     return async function (dispatch) {
         try {
-            const search = await axios.get(`http://localhost:3001/dogs/breeds/orden?alpha=${payload}`);
+            const search = await axios.get(`/dogs/breeds/orden?alpha=${payload}`);
             dispatch({
                 type: FILTER_ALPHABETIC,
                 payload: search.data,

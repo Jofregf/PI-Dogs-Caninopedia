@@ -5,6 +5,10 @@ import Home from './Components/Home/Home.jsx';
 import Details from './Components/Details/Details';
 import Landing from './Components/Landing/Landing.jsx';
 import Create from './Components/Create/Create.jsx'
+import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
+axios.defaults.baseURL= process.env.REACT_APP_API || 'http://localhost:3001';
 
 function App() {
   return (
