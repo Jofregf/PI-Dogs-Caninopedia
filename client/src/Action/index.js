@@ -31,7 +31,7 @@ export function getBreeds() {
 export function getBreedsDetails (id) {
     // console.log(id, 'action')
     return function (dispatch){
-        fetch (`${baseURL}/dogs/${id}`)
+        fetch (`/dogs/${id}`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_BREEDS_DETAILS, payload: data})})
         .catch(function (error) {
@@ -68,7 +68,7 @@ export function searchbarName (payload) {
 export function getTemperaments () {
     return async function (dispatch) {
         
-        fetch (`${baseURL}/temperament`)
+        fetch (`/temperament`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_TEMPERAMENTS, payload: data})})
         .catch(function (error) {
