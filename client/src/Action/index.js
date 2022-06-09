@@ -31,7 +31,7 @@ export function getBreeds() {
 export function getBreedsDetails (id) {
     // console.log(id, 'action')
     return function (dispatch){
-        fetch (`/dogs/${id}`)
+        fetch (`${baseURL}/dogs/${id}`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_BREEDS_DETAILS, payload: data})})
         .catch(function (error) {
@@ -43,7 +43,7 @@ export function getBreedsDetails (id) {
 export function getBreedByName (name) {
     //console.log(name, 'action')
     return function (dispatch) {
-        fetch (`/dogs?name=${name}`)
+        fetch (`${baseURL}/dogs?name=${name}`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_BREED_BY_NAME, payload: data})})
         .catch(function (err) {
@@ -68,7 +68,7 @@ export function searchbarName (payload) {
 export function getTemperaments () {
     return async function (dispatch) {
         
-        fetch (`/temperament`)
+        fetch (`${baseURL}/temperament`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_TEMPERAMENTS, payload: data})})
         .catch(function (error) {
@@ -104,7 +104,7 @@ export function postBreed (breed){
     console.log(breed, 'action')
     return async function (dispatch) {
         try {
-            const newBreed = await axios.post(`/dog`, breed);
+            const newBreed = await axios.post(`${baseURL}/dog`, breed);
             dispatch({
                 type: POST_BREED,
                 payload: newBreed.data
@@ -118,7 +118,7 @@ export function postBreed (breed){
 export function getBreedbyTemperament (payload) {
     return async function (dispatch) {
         try {
-            const search = await axios.get(`/temperament/dogs?temperament=${payload}`);
+            const search = await axios.get(`${baseURL}/temperament/dogs?temperament=${payload}`);
             dispatch({
                 type: FILTER_BY_TEMPERAMENT,
                 payload: search.data
@@ -132,7 +132,7 @@ export function getBreedbyTemperament (payload) {
 export function filterAlphabetic (payload) {
     return async function (dispatch) {
         try {
-            const search = await axios.get(`/dogs/breeds/orden?alpha=${payload}`);
+            const search = await axios.get(`${baseURL}/dogs/breeds/orden?alpha=${payload}`);
             dispatch({
                 type: FILTER_ALPHABETIC,
                 payload: search.data,
