@@ -14,10 +14,12 @@ import {
 
         } from './constants';
 
+import baseURL from '../index'
+
 export function getBreeds() {
     return function (dispatch) {
        
-        fetch('/dogs')
+        fetch(`${baseURL}/dogs`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_BREEDS, payload: data})})
         .catch(function (error) {
