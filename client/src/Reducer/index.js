@@ -34,13 +34,11 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
         case LOADING:
-            //console.log('estoy en loading')
             return {
                 ...state,
                 loading: true,
             };
         case GET_BREEDS_DETAILS:
-            // console.log(action.payload,'reducer')
             return {
                 ...state,
                 breedDetails: action.payload,
@@ -50,7 +48,6 @@ const rootReducer = (state = initialState, action) => {
                 
             };
         case GET_BREED_BY_NAME:
-            //console.log(action.payload, 'reduce')
             return{
                 ...state,
                 breeds: action.payload,
@@ -61,7 +58,6 @@ const rootReducer = (state = initialState, action) => {
             //eslint-disable-next-line
             const filterName = breedSearch.filter((breed) => {
                 let name = breed.name.toLowerCase();
-                //console.log(action.payload, 'reducer')
                 if (name.includes(action.payload)) return breed;
             });
             return {
@@ -80,9 +76,7 @@ const rootReducer = (state = initialState, action) => {
             const filterBreed = action.payload === 'created'
             ? allBreeds.filter((breeds) => breeds.id.length > 8 && breeds.id)
             : allBreeds.filter((breeds) => typeof breeds.id === 'number')
-            //console.log(filterBreed, 'desde reducer')
-            
-           
+
             return {
                 ...state,
                 breeds: action.payload === 'all' ?  state.allBreeds : filterBreed,
@@ -93,14 +87,12 @@ const rootReducer = (state = initialState, action) => {
         case ORDER_BY_WEIGHT:
             const orderWeight = action.payload === 'desc' ?
                 [...state.breeds].sort(function (a, b) {
-                    //console.log('asc reducer')
                     if (a.weight_min === null) {return 0}
                     if (a.weight_min < b.weight_min) {return 1}
                     if (b.weight_min < a.weight_min) {return -1}
                     return 0
                 }):
                 [...state.breeds].sort(function (a,b) {
-                    //console.log('desc reducer')
                     if (a.weight_min === null) {return 0}
                     if (a.weight_min < b.weight_min) {return -1}
                     if (b.weight_min < a.weight_min) {return 1}

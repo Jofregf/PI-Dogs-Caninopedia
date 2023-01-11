@@ -29,7 +29,6 @@ export function getBreeds() {
 };
 
 export function getBreedsDetails (id) {
-    // console.log(id, 'action')
     return function (dispatch){
         fetch (`${baseURL}/dogs/${id}`)
         .then(res => res.json())
@@ -41,7 +40,6 @@ export function getBreedsDetails (id) {
 };
 
 export function getBreedByName (name) {
-    //console.log(name, 'action')
     return function (dispatch) {
         fetch (`${baseURL}/dogs?name=${name}`)
         .then(res => res.json())
@@ -78,7 +76,6 @@ export function getTemperaments () {
 };
 
 export function dbOrApi (payload) {
-    //console.log(payload, 'desde action')
     return async function (dispatch) {
         try {
             dispatch({type: DB_OR_API, payload})
@@ -89,7 +86,6 @@ export function dbOrApi (payload) {
 };
 
 export function orderByWeight (payload) {
-    //console.log(payload, 'action weight')
     try {
         return {
             type: ORDER_BY_WEIGHT,

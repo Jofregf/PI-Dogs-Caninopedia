@@ -15,9 +15,7 @@ function Details() {
   }, [dispatch, details]);
 
   const myDetails = useSelector((state) => state.breedDetails);
-  // console.log(myDetails, 'myDetails')
-  // console.log(details, 'details')
-
+ 
   return (
     <div>
       <div className="details-container">

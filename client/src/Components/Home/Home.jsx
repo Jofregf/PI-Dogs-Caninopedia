@@ -22,14 +22,12 @@ function Home() {
   const lastIndexBreed = currentPage * breedsPerPage;
   const firstIndexBreed = lastIndexBreed - breedsPerPage;
   const currentBreeds = breeds.slice(firstIndexBreed, lastIndexBreed);
-  // console.log(breeds)
 
   const Page = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   function handleClick(event) {
-    // event.preventDefault();
     dispatch(getBreeds(event));
   }
 
@@ -39,7 +37,6 @@ function Home() {
     dispatch(getTemperaments());
   },[dispatch]);
  
-  //console.log(control)
   return (
     <div>
       <div className="upperContainer">

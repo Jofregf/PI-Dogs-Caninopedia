@@ -13,7 +13,6 @@ function FilterByTemperament(props) {
         else return 1;
       }
     );
-    //console.log(temperaments,'temperamentos')
     
     function handleFilterByTemperament(event) {
         event.preventDefault();

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./card.css";
 
 function Card({ name, image, temperament, weight_min, weight_max, id, owner }) {
-  // console.log(id, 'id card')
   return (
     <div className="card-container">
       <Link className="card-link" to={`/dogs/${id}`}>
