@@ -19,7 +19,7 @@ import baseURL from '../index'
 export function getBreeds() {
     return function (dispatch) {
        
-        fetch(`${baseURL}/dogs`)
+        fetch(`${baseURL}dogs`)
         .then(res => res.json())
         .then(data => {dispatch({type: GET_BREEDS, payload: data})})
         .catch(function (error) {
