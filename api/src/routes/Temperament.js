@@ -5,7 +5,5 @@ const {getTemperament, getBreedByTemperament, getOrigen, filterOrigen} = require
 
 router.get('/', getTemperament);
 router.get('/dogs', getBreedByTemperament)
-// router.get('/origen', getOrigen)
-// router.get('/filterorigen', filterOrigen)
 
 module.exports = router;

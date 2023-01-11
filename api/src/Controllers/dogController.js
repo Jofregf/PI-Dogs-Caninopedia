@@ -3,31 +3,6 @@ const { Dog, Temperament } = require("../db");
 const { API_KEY } = process.env;
 const URL = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`;
 
-//! Traigo las razas desde la Api
-// const getApi = async () => {
-//   const apiUrl = await axios.get(URL);
-//   const apiInfo = apiUrl.data.map((dog) => {
-//     return {
-//       id: dog.id,
-//       name: dog.name,
-//       temperament: [dog.temperament]
-//         .join()
-//         .split(",")
-//         .map((temp) => temp.trim()),
-//       weight_min: parseInt(dog.weight.metric.slice(0, 2).trim()),
-//       weight_max: parseInt(dog.weight.metric.slice(4).trim()),
-//       height_min: parseInt(dog.height.metric.slice(0, 2).trim()),
-//       height_max: parseInt(dog.height.metric.slice(4).trim()),
-//       life_span_min: parseInt(dog.life_span.slice(0, 2).trim()),
-//       life_span_max: parseInt(dog.life_span.slice(4).trim()),
-//       image: dog.image.url,
-//       origen: [dog.origin].join().split(',').map((elem) => elem.trim()),
-//       breed_group: dog.breed_group,
-//     };
-//   });
-//   // console.log(apiInfo)
-//   return apiInfo;
-// };
 const getApi = () => {
   return axios.get(URL)
   .then((response) => {
@@ -57,8 +32,6 @@ const getApi = () => {
   })
 }
 
-//! Traigo las razas desde la Base de Datos
-
 const getDB = async () => {
   let breedsDB = await Dog.findAll({include: Temperament});
   let result = breedsDB.map (breed => {
@@ -79,7 +52,6 @@ const getDB = async () => {
   return result;
 }
 
-//! Concateno las razas de la base de datos con la Api
 const getAllInfo = async () => {
   let breedsApi = await getApi();
   let breedsDB = await getDB();
@@ -87,11 +59,8 @@ const getAllInfo = async () => {
   return totalInfo;
 };
 
-//! Traigo todas las razas o las buscadas por nombre(uso el otro endpoint)
-
 const getAllBreeds = async (req, res, next) => {
   const { name } = req.query;
-  //console.log('getallbreeds')
   try {
     if (name) {
       const nameBD = await Dog.findAll({
@@ -102,7 +71,6 @@ const getAllBreeds = async (req, res, next) => {
           model: Temperament,
         },
       });
-      // console.log(nameBD, 'nombre bd')
 
       if (nameBD.length !== 0) {
         const respDB = nameBD.map((resp) => {
@@ -121,7 +89,6 @@ const getAllBreeds = async (req, res, next) => {
             image: resp.image,
           };
         });
-        //console.log(respDB, 'respuesta db')
         return res.status(200).json(respDB);
       } else {
         const nameQuery = (
@@ -130,9 +97,7 @@ const getAllBreeds = async (req, res, next) => {
           )
         ).data;
         let imageName = nameQuery.map((image) => image.name);
-        // console.log(imageId, 'imageid')
         const apiUrl = (await axios.get(URL)).data;
-        // console.log(apiUrl, 'soy la url')
         let imageNameMap = imageName.map((elem) => {
           return (variable = apiUrl.find((cosas) => {
             if (
@@ -142,12 +107,9 @@ const getAllBreeds = async (req, res, next) => {
               return cosas;
           }));
         });
-        //console.log(imageIdMap, 'imageIDMAP')
         let filterName = imageNameMap.filter((sacar) => {
           return sacar != undefined;
         });
-        // console.log(filtrado, 'filtrado')
-        // console.log(filterById, 'filter')
 
         const selectName = filterName.map((sel) => {
           return {
@@ -166,7 +128,6 @@ const getAllBreeds = async (req, res, next) => {
             image: sel.image.url,
           };
         });
-        //console.log(selectName, 'soy el map')
         selectName.length
           ? res.status(200).json(selectName)
           : res.status(404).send({msg:"No existe el nombre"});
@@ -183,8 +144,6 @@ const getAllBreeds = async (req, res, next) => {
     next(error)
   }
 };
-
-//! Traigo las razas por su ID
 
 const getBreedById = async (req, res, next) => {
   try {
@@ -203,8 +162,6 @@ const getBreedById = async (req, res, next) => {
     next(error);
   }
 };
-
-//! Realizo el post de una raza
 
 const postBreed = async (req, res, next) => {
   const {
@@ -231,7 +188,6 @@ const postBreed = async (req, res, next) => {
         life_span_max: parseInt(life_span_max),
         image,
       })
-      //console.log(temperament)
         temperament.map(async elem => {
           const findTemperament = await Temperament.findAll({
             where: {
@@ -255,7 +211,6 @@ const alphabeticOrder = async (req, res, next) => {
     const allBreeds = await getAllInfo();
     let ordenBreeds = [];
     if (alpha === "asc") {
-      // console.log (alpha, 'asc')
       ordenBreeds = allBreeds.sort(function (a, b) {
         if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return 1;
@@ -267,7 +222,6 @@ const alphabeticOrder = async (req, res, next) => {
       });
     }
     if (alpha === "desc") {
-      // console.log (alpha, 'desc')
       ordenBreeds = allBreeds.sort(function (a, b) {
         if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return -1;
@@ -278,7 +232,6 @@ const alphabeticOrder = async (req, res, next) => {
         return 0;
       });
     }
-    // console.log(ordenBreeds, 'respjson')
     res.json(ordenBreeds);
   } catch (error) {
     next(error);
