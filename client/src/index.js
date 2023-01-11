@@ -8,7 +8,7 @@ import store from './Store/index';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
+const baseURL = 'https://caninopedia.up.railway.app' || 'http://localhost:3001';
 
 ReactDOM.render(
   <React.StrictMode>
